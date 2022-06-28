@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 public class Main {
 
     public static String printYear (int year) {
@@ -37,9 +39,34 @@ public class Main {
         }
     }
 
-    public static void deliveryDay(int distance) {
+    public static void deliveryDay(int distance) { //Расчет времени доставки
         int day = (distance + 19) / 40 + 1;
         System.out.println(day);
+    }
+
+    public static int[] generateRandomArray() { //Генератор массива
+        java.util.Random random = new java.util.Random();
+        int[] arr = new int[30];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt(100_000) + 100_000;
+        }
+        return arr;
+    }
+
+    public static double averageSumm (int[] array) { //Расчет среднего значения
+        int summInteger = 0;
+        for (int i = 0; i < array.length; i++) {
+            summInteger = summInteger + array[i];
+        }
+        double middleSumm = (double) summInteger / array.length;
+        return middleSumm;
+    }
+
+    public static String formatSumm() { //Форматирование
+        double summ = averageSumm(generateRandomArray());
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        String average = decimalFormat.format(summ);
+        return average;
     }
 
     public static void main(String[] args) {
@@ -56,5 +83,9 @@ public class Main {
         int deliveryDistance = 95;
         System.out.print("Потребуется дней: ");
         deliveryDay(deliveryDistance);
+
+// Дополнительное задание
+        System.out.println("Средняя сумма трат за месяц составила " + formatSumm() + " рублей");
+
     }
 }
